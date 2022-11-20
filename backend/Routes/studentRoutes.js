@@ -23,4 +23,12 @@ router.delete("/students/delete/:id",async(req,res)=>{
 await studentModel.findByIdAndRemove(req.params.id)
 res.json("delete successfully")
 }) 
+router.put("/students/update/:id",async(req,res)=>{
+    await studentModel.findByIdAndUpdate(req.params.id,{$set:req.body})
+    res.json("updated successfully")
+})
+router.get("/students/:id",async(req,res)=>{
+   const student= await studentModel.findById(req.params.id)
+    res.status(200).json(student)
+})
 module.exports=router
